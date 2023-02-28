@@ -22,7 +22,8 @@ class LimitOrderAgent(PriceListener):
     def on_price_tick(self, product_id: str, price: float):
         # see PriceListener protocol and readme file
 		
-	threading.Thread(target=self.send_orders, args=(product_id, price))
+	t=threading.Thread(target=self.send_orders, args=(product_id, price))
+	t.start()
 
     def add_order(self,buy_or_sell, product_id, quantity, limit_price):
         # Add Order  
